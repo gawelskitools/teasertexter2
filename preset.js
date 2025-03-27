@@ -1,6 +1,6 @@
 const presetsByArt = {
   "#newsclip": {
-    hinweise: "Fakten priorisieren. Kurze, prägnante Überschrift mit Nachrichtenwert. Kurzbeschreibung sachlich, ggf. mit Ort oder Institution. Keywords aus zentralen Begriffen.",
+    hinweise: "Fakten priorisieren. Kurze, prägnante Überschrift mit Nachrichtenwert. Kurzbeschreibung sachlich, ggf. mit Ort oder Institution. Keywords aus zentralen Begriffen in einer Liste mit Komma getrennt ausgeben.",
     stil: "sachlich, kompakt",
     fokus: "Fakten, Zahlen, Ort",
     tiefe: "niedrig bis mittel",
@@ -10,7 +10,7 @@ const presetsByArt = {
     visuell: "mittel"
   },
   "#bt": {
-    hinweise: "Keine Kommentierung oder Bewertung hinzufügen. Keywords aus sichtbarem Geschehen und O-Tönen ableiten. Teaser neutral und beschreibend halten.",
+    hinweise: "Keine Kommentierung oder Bewertung hinzufügen. Keywords aus sichtbarem Geschehen und O-Tönen ableiten, in einer Liste mit Komma getrennt ausgeben. Teaser neutral und beschreibend halten.",
     stil: "beschreibend, sachlich",
     fokus: "sichtbares Geschehen",
     tiefe: "niedrig",
@@ -20,7 +20,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#standup": {
-    hinweise: "Ort und Rolle des Reporters benennen. Kontextuelle Einordnung durch den Reporter hervorheben. Keywords mit Fokus auf Ort, Lage, Zitat.",
+    hinweise: "Ort und Rolle des Reporters benennen. Kontextuelle Einordnung durch den Reporter hervorheben. Keywords mit Fokus auf Ort, Lage, Zitat in einer Liste mit Komma getrennt ausgeben.",
     stil: "kommentierend-neutral",
     fokus: "Ort, Reporter",
     tiefe: "mittel",
@@ -30,7 +30,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#interview": {
-    hinweise: "Zitat oder Position der Person im Fokus. Kurzbeschreibung betont Aussagekraft. Keywords aus Funktion der Person, Thema des Interviews.",
+    hinweise: "Zitat oder Position der Person im Fokus. Kurzbeschreibung betont Aussagekraft. Keywords aus Funktion der Person in einer Liste mit Komma getrennt ausgeben, Thema des Interviews.",
     stil: "zitierend, präzise",
     fokus: "Person/Zitat",
     tiefe: "mittel bis hoch",
@@ -40,7 +40,7 @@ const presetsByArt = {
     visuell: "mittel"
   },
   "#thema": {
-    hinweise: "Zusammenhänge verdeutlichen, Ursachen & Folgen benennen. Kurzbeschreibung analytisch. Keywords mit semantischer Tiefe.",
+    hinweise: "Zusammenhänge verdeutlichen, Ursachen & Folgen benennen. Kurzbeschreibung analytisch. Keywords mit semantischer Tiefe in einer Liste mit Komma getrennt ausgeben.",
     stil: "erklärend, analytisch",
     fokus: "Ursache/Wirkung",
     tiefe: "hoch",
@@ -50,7 +50,7 @@ const presetsByArt = {
     visuell: "mittel"
   },
   "#reportage": {
-    hinweise: "Erzählerisch-emotionaler Fokus. Ton und Sprache dürfen lebendiger sein. Keywords betonen Mensch und Szene. Einleitung darf szenisch sein.",
+    hinweise: "Erzählerisch-emotionaler Fokus. Ton und Sprache dürfen lebendiger sein. Keywords betonen Mensch und Szene in einer Liste mit Komma getrennt ausgeben. Einleitung darf szenisch sein.",
     stil: "szenisch, erzählend",
     fokus: "Alltag, Szenen",
     tiefe: "hoch",
@@ -60,7 +60,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#portraet": {
-    hinweise: "Biografischer Stil. Fokus auf die gezeigte Person. Kurzbeschreibung personalisiert. Keywords betonen Geschichte, Rolle, soziale Einbindung.",
+    hinweise: "Biografischer Stil. Fokus auf die gezeigte Person. Kurzbeschreibung personalisiert. Keywords betonen Geschichte, Rolle, soziale Einbindung in einer Liste mit Komma getrennt ausgeben.",
     stil: "biografisch, empathisch",
     fokus: "Person",
     tiefe: "hoch",
@@ -70,7 +70,7 @@ const presetsByArt = {
     visuell: "mittel"
   },
   "#erklaerung": {
-    hinweise: "Faktenbasierte, erklärende Sprache. Keywords aus Zahlen, Konzepten, visuellen Elementen. Kurzbeschreibung darf visuelle Hilfe betonen.",
+    hinweise: "Faktenbasierte, erklärende Sprache. Keywords aus Zahlen, Konzepten, visuellen Elementen in einer Liste mit Komma getrennt ausgeben. Kurzbeschreibung darf visuelle Hilfe betonen.",
     stil: "instruktiv, sachlich",
     fokus: "Zahlen, Abläufe",
     tiefe: "mittel bis hoch",
@@ -80,7 +80,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#investigativ": {
-    hinweise: "Fakten mit Quellen sichern. Teaser mit Hinweis auf Enthüllung. Keywords betonen Akteure, Methode, Missstand.",
+    hinweise: "Fakten mit Quellen sichern. Teaser mit Hinweis auf Enthüllung. Keywords betonen Akteure, Methode, Missstand in einer Liste mit Komma getrennt ausgeben.",
     stil: "investigativ",
     fokus: "Recherche, Missstand",
     tiefe: "sehr hoch",
@@ -90,7 +90,7 @@ const presetsByArt = {
     visuell: "mittel"
   },
   "#live": {
-    hinweise: "Keine Bearbeitung außer Beschreibung. Teaser mit Live-Charakter. Keywords beschreiben das Geschehen.",
+    hinweise: "Keine Bearbeitung außer Beschreibung. Teaser mit Live-Charakter. Keywords beschreiben das Geschehen in einer Liste mit Komma getrennt ausgeben.",
     stil: "live-begleitend",
     fokus: "aktuelles Geschehen",
     tiefe: "niedrig",
@@ -100,7 +100,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#social": {
-    hinweise: "Sehr kurze, mobiloptimierte Teaser. Keywords auf virale Begriffe und Hashtags optimieren. Emotionen, Zuspitzung erlaubt.",
+    hinweise: "Sehr kurze, mobiloptimierte Teaser. Keywords auf virale Begriffe und Hashtags optimieren und in einer Liste mit Komma getrennt ausgeben. Emotionen, Zuspitzung erlaubt.",
     stil: "aktiv, schnell",
     fokus: "Pointe, Reiz",
     tiefe: "niedrig",
@@ -110,7 +110,7 @@ const presetsByArt = {
     visuell: "hoch"
   },
   "#kontext": {
-    hinweise: "Keine spekulativen Aussagen. Nur ableitbare Informationen ausliefern. Keywords neutral und übergeordnet.",
+    hinweise: "Keine spekulativen Aussagen. Nur ableitbare Informationen ausliefern. Keywords neutral und übergeordnet in einer Liste mit Komma getrennt ausgeben.",
     stil: "nüchtern, strukturiert",
     fokus: "Kontext",
     tiefe: "mittel",
