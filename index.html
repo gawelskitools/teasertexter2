@@ -1,347 +1,215 @@
+<!-- HTML wurde aktualisiert: nutzt nun dynamisch die Felder zielgruppe & visuell aus presets.js -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Textfelder mit Leeren-Buttons und Zeichen-Counter</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px 0;
-        }
-        .row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .column {
-            width: 48%;
-            position: relative;
-        }
-        .contenteditable {
-            width: 100%;
-            height: 200px;
-            padding: 10px;
-            box-sizing: border-box;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            overflow-y: auto;
-            position: relative;
-        }
-        .clear-button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .clear-button:hover {
-            background-color: #0056b3;
-        }
-        .counter {
-            text-align: right;
-            font-size: 14px;
-            color: #555;
-        }
-        .copy-button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .copy-button:hover {
-            background-color: #218838;
-        }
-        .fullscreen-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ffc107;
-            border: none;
-            cursor: pointer;
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-        .fullscreen-button:hover {
-            background-color: #e0a800;
-        }
-        .edit-button {
-            position: absolute;
-            bottom: 1px;
-            right: 1px;
-            background-color: #ffc107;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            width: 24px; /* 10% größer als vorher */
-            height: 24px; /* 10% größer als vorher */
-            clip-path: polygon(100% 0, 0 100%, 100% 100%);
-        }
-        .edit-button:hover {
-            background-color: #e0a800;
-        }
-        .edit-button::before {
-            content: '';
-            position: absolute;
-            top: calc(50% + 3px);
-            left: calc(50% + 3px);
-            width: 6px;
-            height: 6px;
-            background-color: red;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 800px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .placeholder {
-            color: #aaa;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textquellen-Editor für Analysepaket</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="presets.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <div id="text1" class="contenteditable" contenteditable="true" data-placeholder="OM Anmerkung"></div>
-                <button class="fullscreen-button" onclick="openFullscreen('text1')">Vollbild</button>
-                <button class="edit-button" onclick="openEditModal('text1')"></button>
-                <div class="counter" id="counter1">0 Zeichen</div>
-                <button class="clear-button" onclick="clearText('text1', 'counter1')">Textfeld für OM Anmerkungen leeren</button>
-            </div>
-            <div class="column">
-                <div id="text2" class="contenteditable" contenteditable="true" data-placeholder="OM Beschreibung"></div>
-                <button class="fullscreen-button" onclick="openFullscreen('text2')">Vollbild</button>
-                <button class="edit-button" onclick="openEditModal('text2')"></button>
-                <div class="counter" id="counter2">0 Zeichen</div>
-                <button class="clear-button" onclick="clearText('text2', 'counter2')">Textfeld für OM Beschreibungen leeren</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div id="text3" class="contenteditable" contenteditable="true" data-placeholder="OM Videoscript"></div>
-                <button class="fullscreen-button" onclick="openFullscreen('text3')">Vollbild</button>
-                <button class="edit-button" onclick="openEditModal('text3')"></button>
-                <div class="counter" id="counter3">0 Zeichen</div>
-                <button class="clear-button" onclick="clearText('text3', 'counter3')">Textfeld für OM Videoscripts leeren</button>
-            </div>
-            <div class="column">
-                <div id="text4" class="contenteditable" contenteditable="true" data-placeholder="Artikel-Informationen"></div>
-                <button class="fullscreen-button" onclick="openFullscreen('text4')">Vollbild</button>
-                <button class="edit-button" onclick="openEditModal('text4')"></button>
-                <div class="counter" id="counter4">0 Zeichen</div>
-                <button class="clear-button" onclick="clearText('text4', 'counter4')">Textfeld für Artikel-Informationen leeren</button>
-            </div>
-        </div>
-        <button class="copy-button" onclick="copyToClipboard()">Alle Texte kopieren</button>
+  <h1>Textquellen-Eingabe & KI-Prompt-Erzeugung</h1>
+
+  <div class="feld">
+    <h3>Beitragsformat wählen</h3>
+    <select id="beitragsformat" onchange="generateXML(true)">
+      <option value="nachricht">Nachricht</option>
+      <option value="reportage">Reportage</option>
+      <option value="interview">Interview</option>
+      <option value="kommentar">Kommentar</option>
+      <option value="feature">Feature</option>
+      <option value="magazinbeitrag">Magazinbeitrag</option>
+      <option value="doku">Doku</option>
+      <option value="portraet">Porträt</option>
+    </select>
+
+    <h3>Beitragsart wählen</h3>
+    <select id="beitragsart" onchange="generateXML(true)">
+      <option value="#newsclip">#newsclip</option>
+      <option value="#bt">#bt</option>
+      <option value="#standup">#standup</option>
+      <option value="#interview">#interview</option>
+      <option value="#thema">#thema</option>
+      <option value="#reportage">#reportage</option>
+      <option value="#portraet">#portraet</option>
+      <option value="#erklaerung">#erklaerung</option>
+      <option value="#investigativ">#investigativ</option>
+      <option value="#live">#live</option>
+      <option value="#social">#social</option>
+      <option value="#kontext">#kontext</option>
+    </select>
+  </div>
+
+  <div class="grid">
+    <div class="feld">
+      <h3>Anmoderationstext</h3>
+      <textarea id="anmoderation" oninput="generateXML(true)"></textarea>
+      <br>
+      <button onclick="document.getElementById('anmoderation').value=''">Textfeld leeren</button>
     </div>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeFullscreen()">&times;</span>
-            <div id="fullscreen-textarea" class="contenteditable" contenteditable="true" style="width: 100%; height: 400px;"></div>
-        </div>
+    <div class="feld">
+      <h3>Videotranskript</h3>
+      <textarea id="videotranskript" oninput="generateXML(true)"></textarea>
+      <br>
+      <button onclick="document.getElementById('videotranskript').value=''">Textfeld leeren</button>
     </div>
 
-    <div id="edit-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <div id="edit-textarea" class="contenteditable" contenteditable="true" style="width: 100%; height: 200px;"></div>
-            <button class="copy-button" onclick="saveEditText()">Speichern</button>
-        </div>
+    <div class="feld">
+      <h3>Inhaltsbeschreibung</h3>
+      <textarea id="inhaltsbeschreibung" oninput="generateXML(true)"></textarea>
+      <br>
+      <button onclick="document.getElementById('inhaltsbeschreibung').value=''">Textfeld leeren</button>
     </div>
 
-    <script>
-        let currentEditDivId = '';
+    <div class="feld">
+      <h3>Thematische Hinweise</h3>
+      <textarea id="thematische" oninput="generateXML(true)"></textarea>
+      <br>
+      <button onclick="document.getElementById('thematische').value=''">Textfeld leeren</button>
+    </div>
+  </div>
 
-        function updateCounter(divId, counterId) {
-            const div = document.getElementById(divId);
-            const counter = document.getElementById(counterId);
-            counter.textContent = `${div.innerText.length} Zeichen`;
-        }
+  <button onclick="generateXML()">Texte mit Prompt an KI übergeben</button>
+  <button onclick="location.reload()">Seite neu laden</button>
+  <button onclick="downloadXML()">XML herunterladen</button>
 
-        function clearText(divId, counterId) {
-            document.getElementById(divId).innerHTML = '';
-            updateCounter(divId, counterId);
-        }
+  <div id="status"></div>
 
-        function escapeHtml(text) {
-            return text.replace(/&/g, '&amp;')
-                       .replace(/</g, '&lt;')
-                       .replace(/>/g, '&gt;')
-                       .replace(/"/g, '&quot;')
-                       .replace(/'/g, '&#39;')
-                       .replace(/Ä/g, '&Auml;')
-                       .replace(/ä/g, '&auml;')
-                       .replace(/Ö/g, '&Ouml;')
-                       .replace(/ö/g, '&ouml;')
-                       .replace(/Ü/g, '&Uuml;')
-                       .replace(/ü/g, '&uuml;')
-                       .replace(/ß/g, '&szlig;');
-        }
+  <h2>Generiertes XML:</h2>
+  <textarea id="output" class="output" rows="30"></textarea>
 
-        function copyToClipboard() {
-            const text1 = escapeHtml(document.getElementById('text1').innerHTML);
-            const text2 = escapeHtml(document.getElementById('text2').innerHTML);
-            const text3 = escapeHtml(document.getElementById('text3').innerHTML);
-            const text4 = escapeHtml(document.getElementById('text4').innerHTML);
-            const editText = escapeHtml(document.getElementById('edit-textarea').innerHTML);
+  <script>
+    function escapeXML(str) {
+      return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+    }
 
-            const formattedText = `
-<h2>OM Anmerkung</h2>
-<div>${text1}</div>
+    function generateXML(livePreview = false) {
+      const art = document.getElementById("beitragsart").value;
+      const format = document.getElementById("beitragsformat").value;
+      const preset = presetsByArt[art] || presetsByArt["#newsclip"];
 
-<h2>OM Beschreibung</h2>
-<div>${text2}</div>
+      const anm = escapeXML(document.getElementById("anmoderation").value.trim());
+      const vid = escapeXML(document.getElementById("videotranskript").value.trim());
+      const inh = escapeXML(document.getElementById("inhaltsbeschreibung").value.trim());
+      const them = escapeXML(document.getElementById("thematische").value.trim());
 
-<h2>OM Videoscript</h2>
-<div>${text3}</div>
+      const xml = `<analysepaket>
+  <metadaten>
+    <zielplattformen>
+      <plattform>Mediathek</plattform>
+    </zielplattformen>
+    <beitragsformatgruppe>
+      <beitragsformat>${format}</beitragsformat>
+      <beitragsart>${art}</beitragsart>
+      <bearbeitungshinweise>${preset.hinweise}</bearbeitungshinweise>
+      <zielgruppe>${preset.zielgruppe}</zielgruppe>
+      <region>Hamburg</region>
+      <sprachebene>standardsprachlich</sprachebene>
+      <zielzeit>aktuell</zielzeit>
+      <relevanzstufe>hoch</relevanzstufe>
+      <länge>kurz</länge>
+      <ausspielung>automatisiert</ausspielung>
+      <zugänglichkeit>barrierefrei</zugänglichkeit>
+      <visueller_fokus>${preset.visuell}</visueller_fokus>
+      <stil>${preset.stil}</stil>
+      <fokus>${preset.fokus}</fokus>
+      <inhaltstiefe>${preset.tiefe}</inhaltstiefe>
+      <grammatik>${preset.grammatik}</grammatik>
+      <tonalität>${preset.tonalitaet}</tonalität>
+    </beitragsformatgruppe>
+  </metadaten>
+  <textquellen>
+    <textquelle>
+      <typ>anmoderationstext</typ>
+      <rolle>einleitung</rolle>
+      <verwendung>Kontextverständnis</verwendung>
+      <gewichtung>niedrig</gewichtung>
+      <zitierbarkeit>nicht_zitierbar</zitierbarkeit>
+      <quelletyp>redaktionell</quelletyp>
+      <originalsprache>de</originalsprache>
+      <autorrolle>moderator</autorrolle>
+      <zeitbezug>aktuell</zeitbezug>
+      <text>${anm}</text>
+    </textquelle>
+    <textquelle>
+      <typ>videotranskript</typ>
+      <rolle>inhaltlich_zentral</rolle>
+      <verwendung>Faktenextraktion, O-Ton-Paraphrase</verwendung>
+      <gewichtung>hoch</gewichtung>
+      <zitierbarkeit>bedingt_zitierbar</zitierbarkeit>
+      <quelletyp>reportagematerial</quelletyp>
+      <originalsprache>de</originalsprache>
+      <autorrolle>reporter_vor_ort</autorrolle>
+      <zeitbezug>aktuell</zeitbezug>
+      <text>${vid}</text>
+    </textquelle>
+    <textquelle>
+      <typ>inhaltsbeschreibung</typ>
+      <rolle>struktur</rolle>
+      <verwendung>W-Fragen extrahieren</verwendung>
+      <gewichtung>hoch</gewichtung>
+      <zitierbarkeit>frei_verwendbar</zitierbarkeit>
+      <quelletyp>redaktionell</quelletyp>
+      <originalsprache>de</originalsprache>
+      <autorrolle>redaktion</autorrolle>
+      <zeitbezug>aktuell</zeitbezug>
+      <text>${inh}</text>
+    </textquelle>
+    <textquelle>
+      <typ>thematischeHinweise</typ>
+      <rolle>kontextualisierung</rolle>
+      <verwendung>Keywordbildung, Themenfeld</verwendung>
+      <gewichtung>mittel</gewichtung>
+      <zitierbarkeit>nicht_zitierbar</zitierbarkeit>
+      <quelletyp>redaktionell</quelletyp>
+      <originalsprache>de</originalsprache>
+      <autorrolle>redaktion</autorrolle>
+      <zeitbezug>mittelbar</zeitbezug>
+      <text>${them}</text>
+    </textquelle>
+  </textquellen>
+  <ausgabe>
+    <headline>true</headline>
+    <kurzbeschreibung>true</kurzbeschreibung>
+    <keywords>true</keywords>
+    <seo_themen>true</seo_themen>
+    <inhaltsschwerpunkte>true</inhaltsschwerpunkte>
+    <formattyp>cms_teaserblock</formattyp>
+    <ausgabeziel>final</ausgabeziel>
+  </ausgabe>
+</analysepaket>`;
 
-<h2>Artikel-Informationen</h2>
-<div>${text4}</div>
+      document.getElementById("output").value = xml;
 
-<h2>Zusätzliche Anweisungen</h2>
-<div>${editText}</div>
-            `;
+      if (!livePreview) {
+        navigator.clipboard.writeText(xml)
+          .then(() => showStatus("XML wurde in die Zwischenablage kopiert.", true))
+          .catch(err => showStatus("Fehler beim Kopieren: " + err, false));
+      }
+    }
 
-            const tempElement = document.createElement('textarea');
-            tempElement.style.position = 'fixed';
-            tempElement.style.left = '-9999px';
-            tempElement.value = formattedText;
-            document.body.appendChild(tempElement);
-            tempElement.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempElement);
+    function showStatus(message, success) {
+      const status = document.getElementById("status");
+      status.textContent = message;
+      status.className = success ? "success" : "error";
+    }
 
-            alert('Alle Texte wurden in die Zwischenablage kopiert!');
-        }
-
-        function openFullscreen(divId) {
-            const modal = document.getElementById('modal');
-            const fullscreenDiv = document.getElementById('fullscreen-textarea');
-            const originalDiv = document.getElementById(divId);
-
-            fullscreenDiv.innerHTML = originalDiv.innerHTML;
-            fullscreenDiv.setAttribute('data-original-id', divId);
-            fullscreenDiv.setAttribute('data-placeholder', originalDiv.getAttribute('data-placeholder'));
-            modal.style.display = 'block';
-            removePlaceholder(fullscreenDiv); // Placeholder entfernen
-        }
-
-        function closeFullscreen() {
-            const modal = document.getElementById('modal');
-            const fullscreenDiv = document.getElementById('fullscreen-textarea');
-            const originalDivId = fullscreenDiv.getAttribute('data-original-id');
-            const originalDiv = document.getElementById(originalDivId);
-
-            originalDiv.innerHTML = fullscreenDiv.innerHTML;
-            updateCounter(originalDivId, `counter${originalDivId.slice(-1)}`);
-            modal.style.display = 'none';
-        }
-
-        function openEditModal(divId) {
-            const modal = document.getElementById('edit-modal');
-            const editDiv = document.getElementById('edit-textarea');
-            currentEditDivId = divId;
-
-            editDiv.innerHTML = '';
-            modal.style.display = 'block';
-        }
-
-        function closeEditModal() {
-            const modal = document.getElementById('edit-modal');
-            modal.style.display = 'none';
-        }
-
-        function saveEditText() {
-            const editDiv = document.getElementById('edit-textarea');
-            const originalDiv = document.getElementById(currentEditDivId);
-
-            originalDiv.innerHTML += `<div>${editDiv.innerHTML}</div>`;
-            closeEditModal();
-        }
-
-        function removePlaceholder(div) {
-            if (div.innerHTML.trim() === div.getAttribute('data-placeholder')) {
-                div.innerHTML = '';
-                div.classList.remove('placeholder');
-            }
-        }
-
-        document.querySelectorAll('.contenteditable').forEach(div => {
-            div.addEventListener('input', () => {
-                const counterId = `counter${div.id.slice(-1)}`;
-                updateCounter(div.id, counterId);
-            });
-
-            div.addEventListener('focus', function() {
-                removePlaceholder(this);
-            });
-
-            div.addEventListener('blur', function() {
-                if (this.innerHTML === '') {
-                    this.classList.add('placeholder');
-                    this.innerHTML = this.getAttribute('data-placeholder');
-                }
-            });
-
-            div.addEventListener('paste', function(e) {
-                e.preventDefault();
-                const text = (e.originalEvent || e).clipboardData.getData('text/plain');
-                document.execCommand('insertText', false, text);
-                removePlaceholder(this);
-            });
-
-            if (div.innerHTML === '') {
-                div.classList.add('placeholder');
-                div.innerHTML = div.getAttribute('data-placeholder');
-            }
-        });
-    </script>
+    function downloadXML() {
+      const xmlContent = document.getElementById("output").value;
+      const blob = new Blob([xmlContent], { type: "application/xml" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "analysepaket.xml";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
