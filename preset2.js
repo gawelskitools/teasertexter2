@@ -1,42 +1,102 @@
 "#newsclip": {
-    titelstruktur: {
-      satzart: "Hauptsätze",
-      satzlaenge: "kurz",
-      satzstruktur: "linear",
-      tempus: "Präsens",
-      modi: "Indikativ",
-      stilmittel: "Verbalstil",
-      ansprache: "keine",
-      perspektive: "neutral",
-      sprachtempo: "hoch"
+  titelstruktur: {
+    satzart: "Hauptsätze",
+    satzlaenge: "kurz",
+    satzstruktur: "linear",
+    satzbau: {
+      typ: ["Einfachsatz", "erweiterter Hauptsatz"],
+      strukturprinzip: "Subjekt-Prädikat-Objekt",
+      attributverwendung: "sparsam",
+      nebensaetze: "vermeiden",
+      partizipialkonstruktionen: "nicht erlaubt",
+      satzverknüpfung: "durch Konjunktionen",
+      passivkonstruktionen: "nur bei Notwendigkeit",
+      nominalstil: "vermeiden",
+      satzanfänge: "variieren, keine Wiederholungen",
+      kernaussage_pro_satz: "1"
     },
-    kurzbeschreibung: {
-      satzart: "Hauptsätze",
-      satzlaenge: "kurz bis mittel",
-      satzstruktur: "linear",
-      tempus: "Präsens",
-      modi: "Indikativ, Konjunktiv I",
-      stilmittel: "Verbalstil",
-      ansprache: "keine",
-      perspektive: "neutral",
-      sprachtempo: "mittel"
-    },
-    keywordregeln: {
-      quelle: "zentraler Beitragstext",
-      format: "kommagetrennte Liste",
-      typ: "Haupt- und Nebenkeywords",
-      laenge: "max. 10 Begriffe"
-    },
-    priorisierung: "Fakten vor Emotionen",
-    inhaltliche_gewichtung: "Was-Wann-Wo-Wer zuerst, Warum/Wie optional",
-    stil: "sachlich, kompakt",
-    fokus: "Fakten, Zahlen, Ort",
-    tiefe: "niedrig bis mittel",
-    grammatik: "Hauptsätze, Aktiv",
-    tonalitaet: "neutral, nachrichtlich",
-    zielgruppe: "Allgemeinpublikum",
-    visuell: "mittel"
+    tempus: "Präsens",
+    modi: "Indikativ",
+    stilmittel: "Verbalstil",
+    ansprache: "keine",
+    perspektive: "neutral",
+    sprachtempo: "hoch"
   },
+
+  kurzbeschreibung: {
+    satzart: "Hauptsätze",
+    satzlaenge: "kurz bis mittel",
+    satzstruktur: "linear",
+    satzbau: {
+      typ: ["Einfachsatz", "erweiterter Hauptsatz"],
+      strukturprinzip: "Subjekt-Prädikat-Objekt",
+      attributverwendung: "sparsam",
+      nebensaetze: "erlaubt bei Begründung oder Folge",
+      partizipialkonstruktionen: "nicht erlaubt",
+      satzverknüpfung: "durch Konjunktionen",
+      passivkonstruktionen: "nur bei Notwendigkeit",
+      nominalstil: "vermeiden",
+      satzanfänge: "variieren, keine Wiederholungen",
+      kernaussage_pro_satz: "1"
+    },
+    tempus: "Präsens",
+    modi: "Indikativ, Konjunktiv I",
+    stilmittel: "Verbalstil",
+    ansprache: "keine",
+    perspektive: "neutral",
+    sprachtempo: "mittel"
+  },
+
+  keywordregeln: {
+    quelle: "zentraler Beitragstext",
+    format: "kommagetrennte Liste",
+    typ: "Haupt- und Nebenkeywords",
+    laenge: "max. 10 Begriffe",
+    aufbau: {
+      hauptkeywords: "relevante Personen, Orte, Ereignisse",
+      nebenkeywords: "weiterführende Begriffe, Themenkontext"
+    },
+    schreibweise: "klein, ohne Sonderzeichen",
+    sortierung: "nach Relevanz"
+  },
+
+  aufbauprinzip: {
+    einstieg: "Kernaussage zuerst (Top-Down)",
+    detailtiefe: "nach Relevanz abnehmend",
+    ort_zeit_position: "früh im Satz",
+    chronologie: "beachten",
+    satzverbindung: "linear, keine Parenthesen",
+    satzrhythmus: "abwechslungsreich, keine Monotonie",
+    schluss: "faktenbasiert, keine Bewertung"
+  },
+
+  stilregeln: {
+    wortwahl: "präzise, konkret, keine Füllwörter",
+    fremdwoerter: "nur etablierte Begriffe",
+    zahlen: "nur bei Relevanz, gerundet falls möglich",
+    eigennamen: "vollständig beim ersten Auftreten, danach Nachname oder Funktion",
+    zitate: "nur indirekt, im Konjunktiv I",
+    meidung_von: [
+      "Passivhäufung",
+      "Abkürzungen ohne Erklärung",
+      "Wiederholungen",
+      "Füllfloskeln"
+    ],
+    redaktionelle_marker: "vermeiden",
+    aktivierung: "nicht erforderlich"
+  },
+
+  priorisierung: "Fakten vor Emotionen",
+  inhaltliche_gewichtung: "Was-Wann-Wo-Wer zuerst, Warum/Wie optional",
+  stil: "sachlich, kompakt",
+  fokus: "Fakten, Zahlen, Ort",
+  tiefe: "niedrig bis mittel",
+  grammatik: "Hauptsätze, Aktiv",
+  tonalitaet: "neutral, nachrichtlich",
+  zielgruppe: "Allgemeinpublikum",
+  visuell: "mittel"
+}
+
 
   "#bt": {
     stil: "journalistisch, strukturiert",
